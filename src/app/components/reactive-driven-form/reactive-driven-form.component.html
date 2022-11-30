@@ -1,0 +1,60 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="name"
+        placeholder="Name..."
+        formControlName="name"
+      />
+      <mat-error
+        class="error-msg"
+        *ngIf="nameInput.invalid && nameInput.touched"
+      >
+        Name error.....
+      </mat-error>
+    </mat-form-field>
+    <div>
+      <input type="text" placeholder="Email..." formControlName="email" />
+      <p class="error-msg" *ngIf="emailInput.invalid && emailInput.touched">
+        Email error.....
+      </p>
+    </div>
+    <div>
+      <input type="number" placeholder="Age..." formControlName="age" />
+      <p class="error-msg" *ngIf="ageInput.invalid && ageInput.touched">
+        Age error.....
+      </p>
+    </div>
+    <div>
+      <input type="text" placeholder="Password..." formControlName="password" />
+      <p
+        class="error-msg"
+        *ngIf="passwordInput.invalid && passwordInput.touched"
+      >
+        Password error.....
+      </p>
+    </div>
+    <div>
+      <select formControlName="role">
+        <option value="" invalid>Select a gender</option>
+        <option *ngFor="let role of roles" [value]="role">
+          {{ role | titlecase }}
+        </option>
+      </select>
+      <p class="error-msg" *ngIf="roleInput.invalid && roleInput.touched">
+        Role error.....
+      </p>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="registerForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>
